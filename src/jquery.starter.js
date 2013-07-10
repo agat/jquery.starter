@@ -36,14 +36,21 @@
          */
         _init: function () {
             var starter = this,
+                _arguments,
                 plugin;
 
             starter.config = $.extend(true, {}, starter.defaults, starter.options, starter.metadata);
 
             plugin = starter.config[namespace];
 
+            if ('arguments' in starter.config) {
+                _arguments = starter.config['arguments'];
+            } else {
+                _arguments = starter.config;
+            }
+
             if (plugin && plugin in $.fn) {
-                starter.$elem[plugin](starter.config);
+                starter.$elem[plugin](_arguments);
             } else {
                 starter._error("Please add jQuery plugin '%s' js-file to document.", plugin);
             }
@@ -59,8 +66,6 @@
             if ('console' in window) {
                 console.error.apply(console, arguments);
             }
-
-            throw 42;
         }
     };
 
