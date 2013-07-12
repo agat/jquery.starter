@@ -9,12 +9,15 @@
   <link rel="stylesheet" href="../libs/qunit/qunit.css" media="screen">
   <script src="../libs/qunit/qunit.js"></script>
   <!-- Load local lib and tests. -->
-  <script src="../src/starter.js"></script>
+  <script src="jquery.plugin.js"></script>
+  <script src="../src/jquery.starter.js"></script>
   <script src="starter_test.js"></script>
   <!-- Removing access to jQuery and $. But it'll still be available as _$, if
        you REALLY want to mess around with jQuery in the console. REMEMBER WE
        ARE TESTING A PLUGIN HERE, THIS HELPS ENSURE BEST PRACTICES. REALLY. -->
-  <script>window._$ = jQuery.noConflict(true);</script>
+  <script>
+      window._$ = jQuery.noConflict(true);
+  </script>
 </head>
 <body>
   <div id="qunit"></div>

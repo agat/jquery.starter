@@ -1,11 +1,6 @@
-/*
- * jquery.starter
- * A jQuery plugin to start another jQuery plugin.
- *
- * Copyright (c) 2013 Aleksej Romanovskij
- * Licensed under the MIT license.
- */
-
+/*! Starter - v0.1.0 - 2013-07-11
+* https://github.com/agat/jquery.starter
+* Copyright (c) 2013 Aleksej Romanovskij; Licensed MIT */
 (function ($, undefined) {
     'use strict';
 
@@ -39,17 +34,9 @@
                 _arguments,
                 plugin;
 
-            if (typeof starter.options == 'string') {
-                starter.config = $.extend(true, {}, starter.defaults, starter.metadata);
-                plugin = starter.options;
-            } else {
-                starter.config = $.extend(true, {}, starter.defaults, starter.options, starter.metadata);
-                plugin = starter.config[namespace];
-            }
+            starter.config = $.extend(true, {}, starter.defaults, starter.options, starter.metadata);
 
-            if (typeof plugin == 'undefined') {
-                starter._error('Nothing to start :(');
-            }
+            plugin = starter.config[namespace];
 
             if ('arguments' in starter.config) {
                 _arguments = starter.config['arguments'];
@@ -60,20 +47,20 @@
             if (plugin && plugin in $.fn) {
                 starter.$elem[plugin](_arguments);
             } else {
-                starter._error('Please add jQuery plugin "' + plugin + '" js-file to document.');
+                starter._error("Please add jQuery plugin '%s' js-file to document.", plugin);
             }
+
+            // console.dir(starter);
         },
 
         /**
          * Show error message in console
          * @private
          */
-        _error: function (error_message) {
+        _error: function () {
             if ('console' in window) {
-                window.console.error(error_message);
+                console.error.apply(console, arguments);
             }
-
-            throw new Error(error_message);
         }
     };
 
