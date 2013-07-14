@@ -18,11 +18,8 @@
 
     Plugin.prototype = {
         init: function () {
-            console.info('Im started...');
+            //console.info('Im started...');
             //console.dir(this._provided_options);
-        },
-        method: function (el, options) {
-
         }
     };
 
