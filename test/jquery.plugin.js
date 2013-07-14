@@ -7,7 +7,8 @@
     function Plugin(element, options) {
         this.element = element;
 
-        this.options = $.extend({}, defaults, options);
+        this.options            = $.extend({}, defaults, options);
+        this._provided_options  = $.extend({}, options);
 
         this._defaults = defaults;
         this._name = pluginName;
@@ -18,7 +19,7 @@
     Plugin.prototype = {
         init: function () {
             console.info('Im started...');
-            //console.dir(this.options);
+            //console.dir(this._provided_options);
         },
         method: function (el, options) {
 

@@ -21,52 +21,45 @@
      */
 
     module('jQuery#starter', {
-        // This will run before each test in this module.
         setup: function () {
-            this.elems = $('#qunit-fixture').children();
+            this.elems  = $('#qunit-fixture').children();
+            this.elem   = $('#qunit-fixture').children().eq(0);
         }
     });
 
     test('is chainable', function () {
-        expect(2);
-
-        // Not a bad test to run on collection methods.
         strictEqual(this.elems.starter('plugin'), this.elems, 'should be chainable for collections');
-        ok(this.elems.eq(0).starter('plugin').eq(0), 'should be chainable for one element');
+        ok(this.elem.starter('plugin').eq(0), 'should be chainable for one element');
     });
 
     test('bad start', function() {
-        expect(1);
-
         throws(function () {
-            this.elems.eq(1).starter()
+            this.elems.eq(0).starter()
         }, Error, 'should trow error...');
     });
 
-    /*test('is awesome', function() {
-     expect(1);
-     //strictEqual(this.elems.starter().text(), 'awesome0awesome1awesome2', 'should be awesome');
-     });*/
+    test('should start "plugin"', function() {
+        equal(typeof this.elem.starter('plugin').data('plugin'), 'object', '"plugin" started');
+    });
 
-    /*module('jQuery.awesome');
+    test('provide options', function() {
+        var options = {
+            firstKey   : 42,
+            secondKey  : 'string value'
+        };
 
-     test('is awesome', function() {
-     expect(2);
-     strictEqual($.awesome(), 'awesome.', 'should be awesome');
-     strictEqual($.awesome({punctuation: '!'}), 'awesome!', 'should be thoroughly awesome');
-     });
+        this.elems.eq(0).attr({
+            'data-first-key'    : 42,
+            'data-second-key'   : 'string value',
+            'data-starter'      : 'plugin'
+        });
 
-     module(':awesome selector', {
-     // This will run before each test in this module.
-     setup: function() {
-     this.elems = $('#qunit-fixture').children();
-     }
-     });
+        this.elems.eq(1).attr({
+            'data-first-key'    : 42,
+            'data-second-key'   : 'string value'
+        });
 
-     test('is awesome', function() {
-     expect(1);
-     // Use deepEqual & .get() when comparing jQuery objects.
-     deepEqual(this.elems.filter(':awesome').get(), this.elems.last().get(), 'knows awesome when it sees it');
-     });*/
-
+        deepEqual(this.elems.eq(0).starter().data('plugin')._provided_options, options, 'should clear provided options');
+        deepEqual(this.elems.eq(1).starter('plugin').data('plugin')._provided_options, options, 'should clear provided options');
+    });
 }(jQuery));
