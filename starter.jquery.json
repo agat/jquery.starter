@@ -1,6 +1,6 @@
 {
   "name": "starter",
-  "title": "Starter",
+  "title": "jQuery Starter plugin",
   "description": "A jQuery plugin to start another jQuery plugin.",
   "version": "0.1.0",
   "homepage": "https://github.com/agat/jquery.starter",
