@@ -1,6 +1,12 @@
-/*! Starter - v0.1.0 - 2013-07-11
-* https://github.com/agat/jquery.starter
-* Copyright (c) 2013 Aleksej Romanovskij; Licensed MIT */
+/*
+ * jQuery Starter plugin v0.1.0 - 2013-07-14
+ * A jQuery plugin to start another jQuery plugin.
+ *
+ * https://github.com/agat/jquery.starter
+ *
+ * Copyright (c) 2013 Aleksej Romanovskij
+ * Licensed MIT
+ */
 (function ($, undefined) {
     'use strict';
 
@@ -22,7 +28,8 @@
 
         // Plugin defaults options
         defaults    : {
-            autoStart: true
+            autoStart   : true,
+            plugin      : ''
         },
 
         /**
@@ -30,44 +37,60 @@
          * @private
          */
         _init: function () {
-            var starter = this,
-                _arguments,
+            var starter         = this,
+                arguments_key   = 'arguments',
+                _arguments      = $.extend(true, {}, starter.metadata),
                 plugin;
 
-            starter.config = $.extend(true, {}, starter.defaults, starter.options, starter.metadata);
-
-            plugin = starter.config[namespace];
-
-            if ('arguments' in starter.config) {
-                _arguments = starter.config['arguments'];
+            if (typeof starter.options === 'string') {
+                starter.config = $.extend(true, {}, starter.defaults, starter.metadata);
+                plugin = starter.options;
             } else {
-                _arguments = starter.config;
+                starter.config = $.extend(true, {}, starter.defaults, starter.options, starter.metadata);
+                plugin = starter.config[namespace];
+            }
+
+            if (typeof plugin === 'undefined') {
+                starter._error('Nothing to start :(');
+            }
+
+            if (arguments_key in starter.config) {
+                _arguments = starter.config[arguments_key];
+            } else {
+                // Clear arguments...
+                delete _arguments[namespace + '_here'];
+                delete _arguments[namespace];
+                delete _arguments[arguments_key];
+
+                $.each(starter.defaults, function (key) {
+                    delete(_arguments[key]);
+                });
             }
 
             if (plugin && plugin in $.fn) {
                 starter.$elem[plugin](_arguments);
             } else {
-                starter._error("Please add jQuery plugin '%s' js-file to document.", plugin);
+                starter._error('Please add jQuery plugin "' + plugin + '" js-file to document.');
             }
-
-            // console.dir(starter);
         },
 
         /**
          * Show error message in console
          * @private
          */
-        _error: function () {
+        _error: function (error_message) {
             if ('console' in window) {
-                console.error.apply(console, arguments);
+                window.console.error(error_message);
             }
+
+            throw new Error(error_message);
         }
     };
 
     $.fn[namespace] = function (options) {
         return this.each(function () {
             var $this       = $(this),
-                plugin_here = namespace + ' here',
+                plugin_here = namespace + '_here',
                 data        = $this.data(plugin_here);
 
             if (!data) {
