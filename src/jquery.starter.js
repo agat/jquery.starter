@@ -27,7 +27,8 @@
 
         // Plugin defaults options
         defaults    : {
-            autoStart: true
+            autoStart   : true,
+            plugin      : ''
         },
 
         /**
@@ -35,8 +36,9 @@
          * @private
          */
         _init: function () {
-            var starter = this,
-                _arguments,
+            var starter         = this,
+                arguments_key   = 'arguments',
+                _arguments      = $.extend(true, {}, starter.metadata),
                 plugin;
 
             if (typeof starter.options == 'string') {
@@ -51,10 +53,17 @@
                 starter._error('Nothing to start :(');
             }
 
-            if ('arguments' in starter.config) {
-                _arguments = starter.config['arguments'];
+            if (arguments_key in starter.config) {
+                _arguments = starter.config[arguments_key];
             } else {
-                _arguments = starter.config;
+                // Clear arguments...
+                delete _arguments[namespace + '_here'];
+                delete _arguments[namespace];
+                delete _arguments[arguments_key];
+
+                $.each(starter.defaults, function (key) {
+                    delete(_arguments[key]);
+                });
             }
 
             if (plugin && plugin in $.fn) {
@@ -80,7 +89,7 @@
     $.fn[namespace] = function (options) {
         return this.each(function () {
             var $this       = $(this),
-                plugin_here = namespace + ' here',
+                plugin_here = namespace + '_here',
                 data        = $this.data(plugin_here);
 
             if (!data) {
