@@ -67,6 +67,7 @@
 
         /**
          * Show error message in console
+         * @param {string} error_message
          * @private
          */
         _error: function (error_message) {
