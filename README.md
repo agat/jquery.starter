@@ -5,8 +5,8 @@ A jQuery plugin to start another jQuery plugin.
 ## Getting Started
 Download the [production version][min] or the [development version][max].
 
-[min]: https://raw.github.com/agat/jquery.starter/master/dist/starter.min.js
-[max]: https://raw.github.com/agat/jquery.starter/master/dist/starter.js
+[min]: https://raw.github.com/agat/jquery.starter/master/dist/jquery.starter.min.js
+[max]: https://raw.github.com/agat/jquery.starter/master/dist/jquery.starter.js
 
 In your web page include jQuery, Starter and others you needed plugins (Bootstrap Tooltips plugin as example):
 
