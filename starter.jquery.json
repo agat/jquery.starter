@@ -1,27 +1,28 @@
 {
-  "name": "starter",
-  "title": "jQuery Starter plugin",
-  "description": "A jQuery plugin to start another jQuery plugin.",
-  "version": "0.1.0",
-  "homepage": "https://github.com/agat/jquery.starter",
-  "author": {
-    "name": "Aleksej Romanovskij",
-    "email": "aleksij@gmail.com",
-    "url": "http://agat.in/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/agat/jquery.starter.git"
-  },
-  "bugs": "https://github.com/agat/jquery.starter/issues",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/agat/jquery.starter/blob/master/LICENSE-MIT"
-    }
-  ],
-  "dependencies": {
-    "jquery": "*"
-  },
-  "keywords": []
+    "name": "starter",
+    "version": "0.1.0",
+    "title": "jQuery Starter plugin",
+    "author": {
+        "name": "Aleksej Romanovskij",
+        "url": "http://agat.in/"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/agat/jquery.starter/blob/master/LICENSE-MIT"
+        }
+    ],
+    "dependencies": {
+        "jquery": ">=1.10"
+    },
+    "description": "A jQuery plugin to start another jQuery plugin.",
+    "keywords": ["startup", "autorun", "run", "start", "autostart"],
+    "homepage": "https://github.com/agat/jquery.starter",
+    "docs": "https://github.com/agat/jquery.starter",
+    "download": "https://github.com/agat/jquery.starter/archive/master.zip",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/agat/jquery.starter.git"
+    },
+    "bugs": "https://github.com/agat/jquery.starter/issues"
 }
