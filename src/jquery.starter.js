@@ -1,11 +1,3 @@
-/*
- * jquery.starter
- * A jQuery plugin to start another jQuery plugin.
- *
- * Copyright (c) 2013 Aleksej Romanovskij
- * Licensed under the MIT license.
- */
-
 (function ($, undefined) {
     'use strict';
 
@@ -41,7 +33,7 @@
                 _arguments      = $.extend(true, {}, starter.metadata),
                 plugin;
 
-            if (typeof starter.options == 'string') {
+            if (typeof starter.options === 'string') {
                 starter.config = $.extend(true, {}, starter.defaults, starter.metadata);
                 plugin = starter.options;
             } else {
@@ -49,7 +41,7 @@
                 plugin = starter.config[namespace];
             }
 
-            if (typeof plugin == 'undefined') {
+            if (typeof plugin === 'undefined') {
                 starter._error('Nothing to start :(');
             }
 
