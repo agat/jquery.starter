@@ -34,7 +34,7 @@
 
     test('bad start', function() {
         throws(function () {
-            this.elems.eq(0).starter()
+            this.elems.eq(0).starter();
         }, Error, 'should trow error...');
     });
 
