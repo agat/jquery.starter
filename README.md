@@ -82,3 +82,5 @@ $('div').starter({
     arguments: 'show'
 });
 ```
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/agat/jquery.starter/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
