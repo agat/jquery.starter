@@ -45,13 +45,15 @@ $('a').tooltip({
 ```
 If you have to pass the **nested object**:
 ```html
-<a href="#" data-starter="plugin" data-nested-object='{ "key": { "key": "value" } }'>some text</a>
+<a href="#" data-starter="plugin" data-nested-object='{ "childObject": { "key": "value" } }'>some text</a>
 ```
 Attention to the _quotes_. Passed data to the plugin:
 ```json
 {
     "nestedObject": {
-    	"key": "value"
+    	"childObject": {
+            "key": "value"
+        }
     }
 }
 ```
@@ -82,5 +84,3 @@ $('div').starter({
     arguments: 'show'
 });
 ```
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/agat/jquery.starter/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
